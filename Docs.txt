@@ -26,7 +26,9 @@ HANDLING HTML5 VIDEO:
 
 SESSION MANAGEMENT: 
 
-	using express (node.js): http://stackoverflow.com/questions/5522020/how-do-sessions-work-in-express-with-nodejs/11585839#11585839
+	Using express (node.js): http://stackoverflow.com/questions/5522020/how-do-sessions-work-in-express-with-nodejs/11585839#11585839
+
+	Node.js + Express: http://blog.modulus.io/nodejs-and-express-sessions
 
 
 
