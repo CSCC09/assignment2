@@ -1,0 +1,35 @@
+
+
+GOAL: 
+
+	Get all videos, make thumbnails and show them all. Use action "hover" to animate any thumbnail playing" it for some seconds. On click, open up the video and really play it.
+
+	THIS: http://youtu.be/oEpArtB8CJ0?t=21m40s -> HTML5 video + canvas using js. gg
+
+	Comment made by the professor and found on the assignment's page: "...for this assignment, you are really trying to get a full list of “clips”, not the videos. Clips are transcoded as animated GIFs among other things."
+
+VIDEOGAMI API: http://videogami.co/developer/
+
+	"The Videogami API is only available for commercial use to registered users.   The C09 group has been assigned a shared API key.    This means that all media going in and out of this account will be seeing by the whole the group.   Exercise good judgement.
+
+	Username: vdgamers
+	API Key: 7eb1d52ac16ae97b403b58f03b3301d14352e8d641b400a0"
+
+HANDLING HTML5 VIDEO:
+
+	Capturing HTML 5 Video To An Image: http://odetocode.com/blogs/scott/archive/2013/01/04/capturing-html-5-video-to-an-image.aspx
+
+	Capturing frames using canvas: http://appcropolis.com/blog/web-technology/using-html5-canvas-to-capture-frames-from-a-video/
+
+	Canvas playing part of a video: http://jsfiddle.net/JzBSv/1/ (on jQuery Mobile 1.3.1!)
+
+
+SESSION MANAGEMENT: 
+
+	using express (node.js): http://stackoverflow.com/questions/5522020/how-do-sessions-work-in-express-with-nodejs/11585839#11585839
+
+
+
+
+
+
