@@ -16,11 +16,11 @@
      
       var cw = Math.floor(canvas.clientWidth / 1);
       var ch = Math.floor(canvas.clientHeight / 1);
-      canvas.width = cw;
-      canvas.height = ch;
+      canvas.width = 250;
+      canvas.height = 250;
      
       v.addEventListener("play", function(){
-        draw(this,context,cw,ch);
+        draw(this,context,200,200);
       },false);
    
     },false);
@@ -35,14 +35,16 @@
 	<style>
 		.ui-block-a, 
 		.ui-block-b, 
-		.ui-block-c 
+		.ui-block-c,
+		.ui-block-d,
+		.ui-block-e 
 		{
 		background-color: lightgray;
 		border: 1px solid black;
-		height: 300px;
+		height: 250px;
+		width: 250px;
 		font-weight: bold;
 		text-align: center;
-		padding: 30px;
 		}
 	</style>
 
@@ -58,16 +60,14 @@
   		<div data-role="header">
   			<h1>Customized Columns</h1>
   		</div>
-
-  		<div data-role="content">
 		    <p>I Am Now A Mobile Developer!!</p>
 		    <video width="640" height="480" id=v loop="false" controls>
  +          	<source src="test.mp4" type="video/mp4">
       				Your browser does not support the video tag.
         	</video>
-
+        <div data-role="content">
 			<p>Three-column Styled Layout:</p>
-			<div class="ui-grid-b">
+			<div class="ui-grid-d">
 				<div class="ui-block-a">
 					<canvas id=c> </canvas>
 				</div>
@@ -75,6 +75,29 @@
 					<canvas id=c> </canvas>								
 				</div>
 				<div class="ui-block-c">
+					<canvas id=c> </canvas>					
+				</div>
+				<div class="ui-block-d">
+					<canvas id=c> </canvas>								
+				</div>
+				<div class="ui-block-e">
+					<canvas id=c> </canvas>					
+				</div>
+			</div>
+			<div class="ui-grid-d">
+				<div class="ui-block-a">
+					<canvas id=c> </canvas>
+				</div>
+				<div class="ui-block-b">
+					<canvas id=c> </canvas>								
+				</div>
+				<div class="ui-block-c">
+					<canvas id=c> </canvas>					
+				</div>
+				<div class="ui-block-d">
+					<canvas id=c> </canvas>								
+				</div>
+				<div class="ui-block-e">
 					<canvas id=c> </canvas>					
 				</div>
 			</div>
