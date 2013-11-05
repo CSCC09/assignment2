@@ -1,0 +1,54 @@
+<html>
+
+    <title> LoL </title>
+    
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+        <script type="text/javascript">
+
+        function getVotes(id) {
+            $.getJSON('votes?id=' + id, function(result) {
+                $('#votes_' + id).append(result.votes);
+            });
+        }
+
+        $(function() {
+            var aux;
+            for(i = 0; i < 10; i ++) {
+
+                $('#main').append("<div id=\"voting_box_" + i + "\" class=\"voting_box\">");
+                $('#voting_box_' + i).append("<div id=\"arrow_number_" + i + "\" class=\"arrow_number\">");
+                $('#arrow_number_' + i).append("<div id=\"div_" + i + "\">");
+                $('#div_' + i).append("<button id=\"arrow_" + i + "\" class=\"arrow\"></button>");
+                $('#arrow_number_' + i).append("<div id=\"number_" + i + "\" class=\"number\">");
+                $('#number_' + i).append("<p id=\"votes_" + i + "\"></p>");
+                $('#voting_box_' + i).append("<div id=\"description_" + i + "\" class=\"description\">Bla Bla Bla</div>");
+
+                getVotes(i);
+                $('#arrow_' + i).click(function() {
+                    var id = this.id.replace("arrow_", "");
+                    $.getJSON('vote?id=' + id, function(result) {
+                        $("votes_" + id).html(result.votes);     
+                    });
+                });
+            }
+
+        });
+
+        
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <div id="main">
+
+        </div>
+
+    </body>
+
+</html>

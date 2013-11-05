@@ -1,0 +1,33 @@
+.voting_box {
+    height:80px;
+    border:1px dashed #29ABE2;
+    width:200px;
+}
+.arrow_number {
+    float:left;
+    height:80px;
+    width:50px;
+}
+.description {
+    float:left;
+    height:80px;
+    width:150px;
+    text-align:center;
+    height:100%;
+    font-weight:bold;
+    font-size:12px;
+}
+.arrow {
+    width: 50px;
+    height: 40px;
+    background-image:url('arrow.png');
+    background-size: 100%;
+}
+.number {
+    margin-top: -25px;
+    padding-top: 5px;
+    font-size:24px;
+    width: 50px;
+    height: 40px;
+    text-align:center;
+}
