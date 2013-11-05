@@ -14,8 +14,8 @@
       var canvas = document.getElementById("c");
       var context = canvas.getContext("2d");
      
-      var cw = Math.floor(canvas.clientWidth / 2);
-      var ch = Math.floor(canvas.clientHeight / 2);
+      var cw = Math.floor(canvas.clientWidth / 1);
+      var ch = Math.floor(canvas.clientHeight / 1);
       canvas.width = cw;
       canvas.height = ch;
      
@@ -61,30 +61,21 @@
 
   		<div data-role="content">
 		    <p>I Am Now A Mobile Developer!!</p>
-		    <video width="640" height="480" controls>
+		    <video width="640" height="480" id=v loop="false" controls>
  +          	<source src="test.mp4" type="video/mp4">
-          			Your browser does not support the video tag.
+      				Your browser does not support the video tag.
         	</video>
 
 			<p>Three-column Styled Layout:</p>
 			<div class="ui-grid-b">
 				<div class="ui-block-a">
 					<canvas id=c> </canvas>
-					<video id=v autoplay="autoplay" loop="true" muted="true">      
-						<source src="test.mp4" type=video/mp4>
-					</video>
 				</div>
 				<div class="ui-block-b">
-					<canvas id=c> </canvas>
-					<video id=v autoplay="autoplay" loop="true" muted="true">      
-						<source src="test.mp4" type=video/mp4>
-					</video>
+					<canvas id=c> </canvas>								
 				</div>
 				<div class="ui-block-c">
-					<canvas id=c> </canvas>
-					<video id=v autoplay="autoplay" loop="true" muted="true">      
-						<source src="test.mp4" type=video/mp4>
-					</video>
+					<canvas id=c> </canvas>					
 				</div>
 			</div>
 		</div>
