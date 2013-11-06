@@ -30,7 +30,7 @@
                 $('#arrow_' + i).click(function() {
                     var id = this.id.replace("arrow_", "");
                     $.getJSON('vote?id=' + id, function(result) {
-                        $("votes_" + id).html(result.votes);     
+                        $('#votes_' + id).html(result.votes);     
                     });
                 });
             }
