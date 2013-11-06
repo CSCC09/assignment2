@@ -60,7 +60,7 @@
 				var output;
 				for (var i=0; i<receivedData.clips.length; i++){
 					grids = ['a','b','c'];
-					output+="<div class=\"ui-block-" + grids[i%3] + "\">" + "<img src=\"" + receivedData.clips[i].screenshots.medium + "\">" + " " + "</div>";
+					output+="<div class=\"ui-block-" + grids[i%3] + "\" id=\"" + receivedData.clips[i]._id + "\">" + "<img src=\"" + receivedData.clips[i].screenshots.medium + "\">" + " " + "</div>";
 				}	
 				$("#grid").html(output);
 					/*
