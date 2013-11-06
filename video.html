@@ -45,7 +45,7 @@
 
 	<script>
 
-    function getRequest() {
+    document.addEventListener("DOMContentLoaded", function(){
    
     		alert("Working");
     		var data = {};
@@ -79,7 +79,7 @@
 					  }).appendTo( "body" );
 					*/
 			});	
-	}
+	});
 	/*
 		for (var i=0; i<result.length; i++)
 		    for (var name in result[i]) {
@@ -106,7 +106,6 @@
 		    <p>I Am Now A Mobile Developer!!</p>
         <div data-role="content">
 			<p>Three-column Styled Layout:</p>
-			<button type="button" onclick="getRequest()"> Get all clips' screenshots from VIDEOGAMI API :) </button>
 			<div class="ui-grid-b" id="grid">
 				<div class="ui-block-a">
 					<canvas id=c> </canvas>
