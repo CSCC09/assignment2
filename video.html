@@ -3,12 +3,8 @@
 <head>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-  
-  <!-- CODIQA DEPENDENCIES -->
-    <link rel="stylesheet" href="codiqa.ext.css" />
-    <script src="https://d10ajoocuyu32n.cloudfront.net/codiqa.ext.js"></script>
-
   <script>
+  /*
     document.addEventListener("DOMContentLoaded", function(){
       var v = document.getElementById("v");
       var canvas = document.getElementById("c");
@@ -30,14 +26,13 @@
       c.drawImage(v,0,0,w,h);
       setTimeout(draw,10,v,c,w,h);
     }
+  */
   </script>
 
 	<style>
 		.ui-block-a, 
 		.ui-block-b, 
-		.ui-block-c,
-		.ui-block-d,
-		.ui-block-e 
+		.ui-block-c
 		{
 		background-color: lightgray;
 		border: 1px solid black;
@@ -47,6 +42,54 @@
 		text-align: center;
 		}
 	</style>
+
+	<script>
+
+    function getRequest() {
+   
+    		alert("Working");
+    		var data = {};
+			data.username = "vdgamers";
+			data.token = "7eb1d52ac16ae97b403b58f03b3301d14352e8d641b400a0";
+			data.page = 0;
+			data.count = 20;
+
+    		$.getJSON( "http://api.videogami.co/clips", data, function( receivedData ) {
+				var items = [];
+				console.log(receivedData);
+				var output;
+				for (var i=0; i<receivedData.clips.length; i++){
+					grids = ['a','b','c'];
+					output+="<div class=\"ui-block-" + grids[i%3] + "\">" + "<img src=\"" + receivedData.clips[i].screenshots.medium + "\">" + " " + "</div>";
+				}	
+				$("#grid").html(output);
+					/*
+					for (var j in receivedData.clips[i]) {
+						console.log(receivedData.clips[i].screenshots.medium);
+					} 
+					console.log(receivedData.clips[0].screenshots.medium);
+			  		
+					  $.each( receivedData, function( index, value ) {
+					    items.push( "<li id='" + index + "'>" + value+ "</li>" );
+					  });
+					 
+					  $( "<ul/>", {
+					    "class": "my-new-list",
+					    html: items.join( "" )
+					  }).appendTo( "body" );
+					*/
+			});	
+	}
+	/*
+		for (var i=0; i<result.length; i++)
+		    for (var name in result[i]) {
+		        console.log("Item name: "+name);
+		        console.log("Source: "+result[i][name].sourceUuid);
+		        console.log("Target: "+result[i][name].targetUuid);
+   			 } 
+   	data[clips][i][screenshots].medium 
+   	*/  	
+  </script>
 
 </head>
 
@@ -61,13 +104,10 @@
   			<h1>Customized Columns</h1>
   		</div>
 		    <p>I Am Now A Mobile Developer!!</p>
-		    <video width="640" height="480" id=v loop="false" controls>
- +          	<source src="test.mp4" type="video/mp4">
-      				Your browser does not support the video tag.
-        	</video>
         <div data-role="content">
 			<p>Three-column Styled Layout:</p>
-			<div class="ui-grid-d">
+			<button type="button" onclick="getRequest()"> Get all clips' screenshots from VIDEOGAMI API :) </button>
+			<div class="ui-grid-b" id="grid">
 				<div class="ui-block-a">
 					<canvas id=c> </canvas>
 				</div>
@@ -75,29 +115,6 @@
 					<canvas id=c> </canvas>								
 				</div>
 				<div class="ui-block-c">
-					<canvas id=c> </canvas>					
-				</div>
-				<div class="ui-block-d">
-					<canvas id=c> </canvas>								
-				</div>
-				<div class="ui-block-e">
-					<canvas id=c> </canvas>					
-				</div>
-			</div>
-			<div class="ui-grid-d">
-				<div class="ui-block-a">
-					<canvas id=c> </canvas>
-				</div>
-				<div class="ui-block-b">
-					<canvas id=c> </canvas>								
-				</div>
-				<div class="ui-block-c">
-					<canvas id=c> </canvas>					
-				</div>
-				<div class="ui-block-d">
-					<canvas id=c> </canvas>								
-				</div>
-				<div class="ui-block-e">
 					<canvas id=c> </canvas>					
 				</div>
 			</div>
