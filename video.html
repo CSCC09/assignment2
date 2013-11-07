@@ -47,6 +47,12 @@
 			    output = "<div class=\"ui-block-" + grids[i%3] + "\" id=\"" + receivedData.clips[i]._id + "\">" + 
                     "<img class=\"lazy\" data-original=\"" + receivedData.clips[i].gifs.normal + "\">" + " " + "</div>";
                 $("#grid").append(output);
+
+                $('#' + receivedData.clips[i]._id).click(function(){
+                    var id = this.id;
+                    // Adiciona o codigo aqui
+
+                });
 		    }	
 		    
             $("img.lazy").lazyload({
