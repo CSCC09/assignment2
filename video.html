@@ -43,13 +43,12 @@
 		    console.log(receivedData);
 		    var output = "";
 		    for (var i=0; i<receivedData.clips.length; i++){
-
 			    grids = ['a','b','c'];
-			    output = "<div class=\"ui-block-" + grids[i%3] + "\" id=\"" + receivedData.clips[i]._id + "\">" + 
+			    output = "<div class=\"ui-block-" + grids[i%3] + "\" id=\"" + receivedData.clips[i].parent.pID + "\">" + 
                     "<img class=\"lazy img\" data-original=\"" + receivedData.clips[i].gifs.normal + "\">" + " " + "</div>";
                 $("#grid").append(output);
 
-                $('#' + receivedData.clips[i]._id).click(function(){
+                $('#' + receivedData.clips[i].parent.pID).click(function(){
                     var id = this.id;
                     var data = {};
 	                data.username = "vdgamers";
