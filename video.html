@@ -14,17 +14,28 @@
 		.ui-block-b, 
 		.ui-block-c
 		{
-		background-color: gray;
-		border: 1px solid black;
-		height: 250px;
-		width: 250px;
-		font-weight: bold;
-		text-align: center;
+			background-color: gray;
+			border: 1px solid black;
+			height: 250px;
+			width: 250px;
+			font-weight: bold;
+			text-align: center;
 		}
         .img {
             height: 100%;
             width: 100%;
             vertical-align: middle;
+        }
+        .popupwindow {
+        	background-color: black;
+       		border: 1px solid black;
+       		vertical-align: middle;
+        }
+        .vButton{
+        	color: gray;
+        	border: 1px solid black;
+        	width: 40%;
+        	text-align: center;
         }
 	</style>
 
@@ -138,7 +149,10 @@
     			<video id="videoPopup" width="640" height="480" controls>
                    <source src="test.mp4" type="video/mp4">
                                   Your browser does not support the video tag.
-                </video> 
+                </video>
+                <div data-role="footer">
+                	<button id="voteButton" type="button" class="vButton">Like it!</button>
+                </div>
 			</div>
 			<div class="ui-grid-b" id="grid">
 			    
