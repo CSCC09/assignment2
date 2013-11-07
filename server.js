@@ -6,8 +6,8 @@ var fs = require('fs');
 var storage = require('node-persist');
 
 // Initializing storage
-storage.initSync();
-storage.clear();
+storage.init();
+//storage.clear();
 
 // Get the votes of a specific video, if the video is not on the database, we insert it
 function getVotes(id) {
