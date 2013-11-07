@@ -56,8 +56,7 @@
 	                data.page = 0;
 	                data.count = 1;
                     $.getJSON("http://api.videogami.co/video/" + id, data, function(receivedData){
-                        $("#video").attr("src", receivedData.video.formats.mp4);
-                        $('#videoPopup').load();
+                        $("#videoPopup").attr("src", receivedData.video.formats.mp4);
                         $("#video").click();
                     });               
                 });
