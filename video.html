@@ -50,12 +50,16 @@
 
                 $('#' + receivedData.clips[i]._id).click(function(){
                     var id = this.id;
-                    // GET video url using ID
-                    // var url = $.getJSON("http://api.videogami.co/video/" + id, data);
-                    //console.log(url)
-                    //Change video src to the url received
-                    //$("#video").attr("src") = "newwebpage.html";
-                    $("#video").click();
+                    var data = {};
+	                data.username = "vdgamers";
+	                data.token = "7eb1d52ac16ae97b403b58f03b3301d14352e8d641b400a0";
+	                data.page = 0;
+	                data.count = 1;
+                    $.getJSON("http://api.videogami.co/video/" + id, data, function(receivedData){
+                        $("#video").attr("src", receivedData.video.formats.mp4);
+                        $('#videoPopup').load();
+                        $("#video").click();
+                    });               
                 });
 		    }	
 		    
