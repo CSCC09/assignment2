@@ -14,7 +14,7 @@
 		.ui-block-b, 
 		.ui-block-c
 		{
-		background-color: lightgray;
+		background-color: gray;
 		border: 1px solid black;
 		height: 250px;
 		width: 250px;
@@ -24,6 +24,7 @@
         .img {
             height: 100%;
             width: 100%;
+            vertical-align: middle;
         }
 	</style>
 
@@ -45,7 +46,7 @@
 
 			    grids = ['a','b','c'];
 			    output = "<div class=\"ui-block-" + grids[i%3] + "\" id=\"" + receivedData.clips[i]._id + "\">" + 
-                    "<img class=\"lazy\" data-original=\"" + receivedData.clips[i].gifs.normal + "\">" + " " + "</div>";
+                    "<img class=\"lazy img\" data-original=\"" + receivedData.clips[i].gifs.normal + "\">" + " " + "</div>";
                 $("#grid").append(output);
 
                 $('#' + receivedData.clips[i]._id).click(function(){
@@ -125,7 +126,7 @@
 
 <body>
 
-    <div data-role="page">
+    <div data-role="page" id=home data-theme=a>
 
 		<div data-role="header">
 			<h1>Welcome To My Homepage</h1>
