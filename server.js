@@ -3,48 +3,29 @@ var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
 var fs = require('fs');
-var sqlite3 = require("sqlite3").verbose();
-var file = "database.db3";
-var db = new sqlite3.Database(file);
+var storage = require('node-persist');
 
-// Creating the table if it doesn't exist
-var query = "CREATE TABLE IF NOT EXISTS Votes (";
-query = query + "id integer PRIMARY KEY AUTOINCREMENT, "
-query = query + "video_id VARCHAR(50), ";
-query = query + "votes int default 0)";
-db.run(query);
+// Initializing storage
+storage.initSync();
+storage.clear();
 
 // Get the votes of a specific video, if the video is not on the database, we insert it
 function getVotes(id) {
 
-    var query = "SELECT votes FROM Votes WHERE video_id = '" + id + "'";
-    var votes = -1;    
-
-    db.each(query, function(err, row) {
-        votes = row.votes;
-    });
-
-    if (votes == -1) {
-        query = "INSERT INTO Votes (video_id) VALUES ('" + id + "')";
-        votes = 0;
-    }
-
+    votes = storage.getItem(id);
+    if (votes == undefined) {
+        storage.setItem(id, 0);
+        return 0;
+    } 
     return votes;
-
 }
 
 // Vote for a specific video
 function vote(id) {
 
-    var query = "SELECT votes FROM Votes WHERE id = '" + id + "'";
-    var votes;
-
-    db.each(query, function(err, row) {
-        votes = row.votes + 1;
-    });
-
-    query = "UPDATE Votes SET votes = " + votes + " WHERE video_id = '" + id + "'";
-    db.run(query);
+    votes = storage.getItem(id);
+    storage.setItem(id, votes + 1);
+    return votes + 1;
 
 }
 
@@ -57,6 +38,16 @@ http.createServer(function(request, response) {
     var votes;
     response.writeHead(200, {'Content-Type': 'application/json'});
 
+    // Getting the style.css
+    if(request.url.indexOf('.css') != -1){
+      fs.readFile(__dirname + '/style.css', function (err, data) {
+        if (err) console.log(err);
+        response.writeHead(200, {'Content-Type': 'text/css'});
+        response.write(data);
+        response.end();
+      });
+    }
+
     if (request.method == 'GET') {
         // Loading index.html
         if (pathname == '/') {
@@ -65,13 +56,12 @@ http.createServer(function(request, response) {
                 response.write(data);
                 response.end();
             });
-        } else if (pathname == '/votes') {            
-            votes = getVotes(param[0]);
+        } else if (pathname == '/votes') {
+            votes = getVotes(param.id);
             response.end(JSON.stringify({"votes" : votes}));
-        } 
-    } else if (request.method == 'POST') {
-        if (pathname == '/vote') {
-            vote(param[0]);
+        } else if (pathname == '/vote') {
+            votes = vote(param.id);
+            response.end(JSON.stringify({"votes" : votes}));
         }
     }
 }).listen(PORT); // Server starts to listen on port 4321.

@@ -1,10 +1,10 @@
-
+TO SEE JSON RETURNED BY API WHEN GETTING ALL CLIPS: http://api.videogami.co/clips?username=vdgamers&token=7eb1d52ac16ae97b403b58f03b3301d14352e8d641b400a0&count=20&page=0
 
 GOAL: 
 
-	Get all videos, make thumbnails and show them all. Use action "hover" to animate any thumbnail playing" it for some seconds. On click, open up the video and really play it.
-
-	THIS: http://youtu.be/oEpArtB8CJ0?t=21m40s -> HTML5 video + canvas using js. gg
+	1) Get all clips and animate them as we wish;
+	2) Figure out a way to get the appropriate videos on click or something and play 	them to the user and create a button or something to vote.
+	3) Play LoL, be happy and get an A.
 
 	Comment made by the professor and found on the assignment's page: "...for this assignment, you are really trying to get a full list of “clips”, not the videos. Clips are transcoded as animated GIFs among other things."
 

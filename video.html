@@ -3,24 +3,20 @@
 <head>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-  
-  <!-- CODIQA DEPENDENCIES -->
-    <link rel="stylesheet" href="codiqa.ext.css" />
-    <script src="https://d10ajoocuyu32n.cloudfront.net/codiqa.ext.js"></script>
-
   <script>
+  /*
     document.addEventListener("DOMContentLoaded", function(){
       var v = document.getElementById("v");
       var canvas = document.getElementById("c");
       var context = canvas.getContext("2d");
      
-      var cw = Math.floor(canvas.clientWidth / 2);
-      var ch = Math.floor(canvas.clientHeight / 2);
-      canvas.width = cw;
-      canvas.height = ch;
+      var cw = Math.floor(canvas.clientWidth / 1);
+      var ch = Math.floor(canvas.clientHeight / 1);
+      canvas.width = 250;
+      canvas.height = 250;
      
       v.addEventListener("play", function(){
-        draw(this,context,cw,ch);
+        draw(this,context,200,200);
       },false);
    
     },false);
@@ -30,21 +26,70 @@
       c.drawImage(v,0,0,w,h);
       setTimeout(draw,10,v,c,w,h);
     }
+  */
   </script>
 
 	<style>
 		.ui-block-a, 
 		.ui-block-b, 
-		.ui-block-c 
+		.ui-block-c
 		{
 		background-color: lightgray;
 		border: 1px solid black;
-		height: 300px;
+		height: 250px;
+		width: 250px;
 		font-weight: bold;
 		text-align: center;
-		padding: 30px;
 		}
 	</style>
+
+	<script>
+
+    document.addEventListener("DOMContentLoaded", function(){
+   
+    		alert("Working");
+    		var data = {};
+			data.username = "vdgamers";
+			data.token = "7eb1d52ac16ae97b403b58f03b3301d14352e8d641b400a0";
+			data.page = 0;
+			data.count = 20;
+
+    		$.getJSON( "http://api.videogami.co/clips", data, function( receivedData ) {
+				var items = [];
+				console.log(receivedData);
+				var output;
+				for (var i=0; i<receivedData.clips.length; i++){
+					grids = ['a','b','c'];
+					output+="<div class=\"ui-block-" + grids[i%3] + "\" id=\"" + receivedData.clips[i]._id + "\">" + "<img src=\"" + receivedData.clips[i].screenshots.medium + "\">" + " " + "</div>";
+				}	
+				$("#grid").html(output);
+					/*
+					for (var j in receivedData.clips[i]) {
+						console.log(receivedData.clips[i].screenshots.medium);
+					} 
+					console.log(receivedData.clips[0].screenshots.medium);
+			  		
+					  $.each( receivedData, function( index, value ) {
+					    items.push( "<li id='" + index + "'>" + value+ "</li>" );
+					  });
+					 
+					  $( "<ul/>", {
+					    "class": "my-new-list",
+					    html: items.join( "" )
+					  }).appendTo( "body" );
+					*/
+			});	
+	});
+	/*
+		for (var i=0; i<result.length; i++)
+		    for (var name in result[i]) {
+		        console.log("Item name: "+name);
+		        console.log("Source: "+result[i][name].sourceUuid);
+		        console.log("Target: "+result[i][name].targetUuid);
+   			 } 
+   	data[clips][i][screenshots].medium 
+   	*/  	
+  </script>
 
 </head>
 
@@ -58,33 +103,26 @@
   		<div data-role="header">
   			<h1>Customized Columns</h1>
   		</div>
-
-  		<div data-role="content">
 		    <p>I Am Now A Mobile Developer!!</p>
+<<<<<<< HEAD
 		    <video width="640" height="480" controls>
            	<source src="test.mp4" type="video/mp4">
           			Your browser does not support the video tag.
         	</video>
 
+=======
+        <div data-role="content">
+>>>>>>> 10e3e9bb2211fd0503ea65c8c7f10b42b7d90a16
 			<p>Three-column Styled Layout:</p>
-			<div class="ui-grid-b">
+			<div class="ui-grid-b" id="grid">
 				<div class="ui-block-a">
 					<canvas id=c> </canvas>
-					<video id=v autoplay="autoplay" loop="true" muted="true">      
-						<source src="test.mp4" type=video/mp4>
-					</video>
 				</div>
 				<div class="ui-block-b">
-					<canvas id=c> </canvas>
-					<video id=v autoplay="autoplay" loop="true" muted="true">      
-						<source src="test.mp4" type=video/mp4>
-					</video>
+					<canvas id=c> </canvas>								
 				</div>
 				<div class="ui-block-c">
-					<canvas id=c> </canvas>
-					<video id=v autoplay="autoplay" loop="true" muted="true">      
-						<source src="test.mp4" type=video/mp4>
-					</video>
+					<canvas id=c> </canvas>					
 				</div>
 			</div>
 		</div>
