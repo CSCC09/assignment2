@@ -6,8 +6,7 @@ var fs = require('fs');
 var storage = require('node-persist');
 
 // Initializing storage
-storage.init();
-//storage.clear();
+storage.initSync();
 
 // Get the votes of a specific video, if the video is not on the database, we insert it
 function getVotes(id) {
@@ -23,7 +22,7 @@ function getVotes(id) {
 // Vote for a specific video
 function vote(id) {
 
-    votes = storage.getItem(id);
+    votes = getVotes(id);
     storage.setItem(id, votes + 1);
     return votes + 1;
 
@@ -39,10 +38,10 @@ http.createServer(function(request, response) {
     response.writeHead(200, {'Content-Type': 'application/json'});
 
     // Getting the style.css
-    if(request.url.indexOf('.css') != -1){
-      fs.readFile(__dirname + '/style.css', function (err, data) {
+    if(request.url.indexOf('.js') != -1){
+      fs.readFile(__dirname + '/jquery.lazyload.js', function (err, data) {
         if (err) console.log(err);
-        response.writeHead(200, {'Content-Type': 'text/css'});
+        response.writeHead(200, {'Content-Type': 'text/js'});
         response.write(data);
         response.end();
       });
@@ -52,7 +51,7 @@ http.createServer(function(request, response) {
         // Loading index.html
         if (pathname == '/') {
             response.writeHead(200, {'Content-Type': 'text/html'});
-            fs.readFile(__dirname + '/index.html', function(err, data) {
+            fs.readFile(__dirname + '/video.html', function(err, data) {
                 response.write(data);
                 response.end();
             });
