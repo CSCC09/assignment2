@@ -51,16 +51,19 @@
 	    data.username = "vdgamers";
 	    data.token = "7eb1d52ac16ae97b403b58f03b3301d14352e8d641b400a0";
 	    data.page = Math.floor(Math.random() * 5);
-	    data.count = 18;
+	    data.count = 20;
 
+	    // Get clips from API and insert them into the grid's blocks
 	    $.getJSON( "http://api.videogami.co/clips", data, function( receivedData ) {
 		    var clips = [];
             var flag;
 		    var output = "";
             var id;
+            // Access each clip
 		    for (var i=0; i<receivedData.clips.length; i++){
                 id = receivedData.clips[i].parent.pID;
                 flag = 0;
+                // flag is used to avoid loading the same video from 2 or more clips
                 for (j = 0; j < clips.length; j ++) {
                     if (clips[j] == id) {
                         flag = 1;
@@ -73,6 +76,8 @@
                     clips.push(id);
                 }
 			    grids = ['a','b','c'];
+			    // Insert divs in the grid so each block displays a clip 
+			    // and set their id as the parent id of the clip
 			    output = "<div class=\"ui-block-" + grids[i%3] + "\" id=\"" + receivedData.clips[i].parent.pID + "\">" + 
                     "<img class=\"lazy img\" data-original=\"" + receivedData.clips[i].gifs.normal + "\">" + " " + "</div>";
                 $("#grid").append(output);
@@ -86,6 +91,7 @@
 	                data.token = "7eb1d52ac16ae97b403b58f03b3301d14352e8d641b400a0";
 	                data.page = 0;
 	                data.count = 1;
+	                // Manages the votes
                     $('#voteButton').bind("click", function(){
                         if (globalFlag == 1)
                             $.getJSON('vote?id=' + globalId, function(result) {
@@ -93,6 +99,7 @@
                             });
                         globalFlag = 0;
                     });
+                    //  Change video source to the parent id and open it as a popup
                     $.getJSON("http://api.videogami.co/video/" + id, data, function(receivedData){
                         $("#popupVideo h1").text(receivedData.video.title);
                         $("#videoPopup").attr("src", receivedData.video.formats.mp4);
@@ -101,12 +108,15 @@
                 });
 		    }	
 		    
+		    // Only the visible images are loaded
             $("img.lazy").lazyload({
                 effect : "fadeIn"
             });
 	    });	      
 	});
+	
 
+	// Manages the popup window
 	function scale( width, height, padding, border ) {
 	    var scrWidth = $( window ).width() - 30,
 	        scrHeight = $( window ).height() - 30,
@@ -133,6 +143,8 @@
 	    };
 	};
 
+
+	// Manages the popup iframe
 	$(document).on( "pageinit", function() {
 	    $( "#popupVideo iframe" )
 	        .attr( "width", 0 )
@@ -148,6 +160,9 @@
 	                .attr( "width", w )
 	                .attr( "height", h );
 	        },
+	        //  Manages the popup windows when it's closed and stop the video
+	        // Without the .load(), the video would continue to play even 
+	        // after closing the popup
 	        popupafterclose: function() {
 	            $( "#popupVideo iframe" )
 	                .attr( "width", 0 )
