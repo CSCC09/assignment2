@@ -37,6 +37,10 @@
         	width: 20%;
         	text-align: center;
         }
+        #numvotes{
+        	float: right;
+        	margin-right: 20px;
+        }
 	</style>
 
 	<script>
@@ -94,10 +98,15 @@
 		                data.token = "7eb1d52ac16ae97b403b58f03b3301d14352e8d641b400a0";
 		                data.page = 0;
 		                data.count = 1;
+		                
+		                $.getJSON('votes?id=' + globalId, function(result) {
+	                                $("#numvotes p").text(result.votes);
+	                            });
 		                // Manages the votes
 	                    $('#voteButton').bind("click", function(){
 	                        if (globalFlag == 1)
 	                            $.getJSON('vote?id=' + globalId, function(result) {
+	                            	$("#numvotes p").text(result.votes);
 	                                alert("Thanks for voting!");
 	                            });
 	                        globalFlag = 0;
@@ -202,6 +211,9 @@
                 </video>
                 <div data-role="footer">
                 	<button id="voteButton" type="button" class="vButton">Like it!</button>
+                	<div id="numvotes">
+                		<p></p>
+                	</div>
                 </div>
 			</div>
 			<div class="ui-grid-b" id="grid">
