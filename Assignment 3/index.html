@@ -19,17 +19,38 @@
 
 	<script>
 
-	$.ajax({ 
-	    type: 'GET', 
-	    url: 'http://api.tumblr.com/v2/blog/insanelygaming.tumblr.com/posts?api_key=kY2V75ELjrjiZsXmJoiaa7XVIG7ERRxiAlEEQJhQot4p8lDk9J', 
-	    data: { get_param: 'value' }, 
-	    dataType: 'jsonp',
-	    success: function (data) { 
-			for (i = 0; i <= 19; i++) {
-			        $('#posts').append('<div class="post"> <p>Post ' + i + '</p><p>URL: ' + data.response.posts[i].post_url + '</p><p>Date: ' + data.response.posts[i].date + '</p><p>Caption: ' + data.response.posts[i].caption + '</p><img align="center" src="' + data.response.posts[i].photos[0].alt_sizes[0].url + '"></a></div><br/><br/>');
-			}
-		}
-	});
+	$(document).ready(function() {
+        $("#submit").click(function() {
+        var tumblrName = $('#tumblrName').val();
+    		$.ajax({ 
+			    type: 'GET', 
+			    url: 'http://api.tumblr.com/v2/blog/'+tumblrName+'.tumblr.com/posts?api_key=kY2V75ELjrjiZsXmJoiaa7XVIG7ERRxiAlEEQJhQot4p8lDk9J', 
+			    data: { get_param: 'value' }, 
+			    dataType: 'jsonp',
+			    success: function (data) {
+			    	if(data.meta.status!=404){
+			    		for (i = 0; i <= 19; i++) {
+						if(data.response.posts[i].type == 'text'){
+							$('#posts').append('<div class="post"> <p>Post ' + i + '</p><p>URL: ' + data.response.posts[i].post_url + '</p><p>Date: ' + data.response.posts[i].date + '</p><p>Title: ' + data.response.posts[i].title + '</p>' + data.response.posts[i].body + '</div><br/><br/>');
+						} else {
+							if(data.response.posts[i].type == 'photo') {
+								$('#posts').append('<div class="post"> <p>Post ' + i + '</p><p>URL: ' + data.response.posts[i].post_url + '</p><p>Date: ' + data.response.posts[i].date + '</p><p>Caption: ' + data.response.posts[i].caption + '</p><img align="center" src="' + data.response.posts[i].photos[0].alt_sizes[0].url + '"></div><br/><br/>');
+							}
+						}
+					        
+					}
+			    }else{
+			    	alert("Tumblr doesn't exist or isn't available.");
+			    } 
+					
+				}
+			});
+		});
+    });
+
+	
+
+	
 
   </script>
 
@@ -44,6 +65,14 @@
 		</div>
 
 		<div id="posts" data-role="content">
+			<h2>Type the just name of the Tumblr you want to get the posts from. NOT THE FULL URL.</h2>
+			<br>
+			<p>Format: [Tumblr name].tumblr.com</p>
+			<br>
+			<label for="tumblrName">Tumblr name:</label>
+    		<input type="text" name="tumblrName" id="tumblrName" value=""  />
+			<br>
+			<button id="submit" type="button">Get Posts</button>
 
 		</div>
 
