@@ -31,10 +31,10 @@
 			    	if(data.meta.status!=404){
 			    		for (i = 0; i <= 19; i++) {
 						if(data.response.posts[i].type == 'text'){
-							$('#posts').append('<div class="post"> <p>Post ' + i + '</p><p>URL: ' + data.response.posts[i].post_url + '</p><p>Date: ' + data.response.posts[i].date + '</p><p>Title: ' + data.response.posts[i].title + '</p>' + data.response.posts[i].body + '</div><br/><br/>');
+							$('#posts').append('<div class="post"> <p>Post ' + (i+1) + '</p><p>URL: ' + data.response.posts[i].post_url + '</p><p>Date: ' + data.response.posts[i].date + '</p><p>Title: ' + data.response.posts[i].title + '</p>' + data.response.posts[i].body + '</div><br/><br/>');
 						} else {
 							if(data.response.posts[i].type == 'photo') {
-								$('#posts').append('<div class="post"> <p>Post ' + i + '</p><p>URL: ' + data.response.posts[i].post_url + '</p><p>Date: ' + data.response.posts[i].date + '</p><p>Caption: ' + data.response.posts[i].caption + '</p><img align="center" src="' + data.response.posts[i].photos[0].alt_sizes[0].url + '"></div><br/><br/>');
+								$('#posts').append('<div class="post"> <p>Post ' + (i+1) + '</p><p>URL: ' + data.response.posts[i].post_url + '</p><p>Date: ' + data.response.posts[i].date + '</p><p>Caption: ' + data.response.posts[i].caption + '</p><img align="center" src="' + data.response.posts[i].photos[0].alt_sizes[0].url + '"></div><br/><br/>');
 							}
 						}
 					        
