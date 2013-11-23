@@ -26,7 +26,7 @@
 	    dataType: 'jsonp',
 	    success: function (data) { 
 			for (i = 0; i <= 19; i++) {
-			        $('#posts').append('<div class="post"><a href="' + data.response.posts[i].post_url +'"> ' + data.response.posts[i].caption + '<img align="center" src="' + data.response.posts[i].photos[0].alt_sizes[0].url + '"></a></div><br/><br/>');
+			        $('#posts').append('<div class="post"> <p>Post ' + i + '</p><p>URL: ' + data.response.posts[i].post_url + '</p><p>Date: ' + data.response.posts[i].date + '</p><p>Caption: ' + data.response.posts[i].caption + '</p><img align="center" src="' + data.response.posts[i].photos[0].alt_sizes[0].url + '"></a></div><br/><br/>');
 			}
 		}
 	});
@@ -44,7 +44,7 @@
 		</div>
 
 		<div id="posts" data-role="content">
-			
+
 		</div>
 
 		<div data-role="footer">
