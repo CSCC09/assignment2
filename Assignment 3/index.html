@@ -37,6 +37,7 @@
                         dataType: 'jsonp',
                         success: function (data) {
                             if (data.meta.status != 404){
+                                $("#posts").empty();
                                 for (i = 0; i < 20; i++) {
                                     if (data.response.posts[i].type == 'text'){
                                         $('#posts').append('<div id = "' + i + '" class = "post">');
@@ -91,18 +92,21 @@
 			    <h1> Tumblr Client </h1>
 		    </div>
 
-		    <div id="posts" data-role="content">
-			    <h2> Type the name of the Tumblr you want to get the posts from (not the full url) </h2>
-			    <br>
-			    <label for="tumblrName">Tumblr name:</label>
-        		<input type="text" name="tumblrName" id="tumblrName" value=""  />
-			    <br>
-			    <button id="submit" type="button">Get Posts</button>
+            <h2> 
+                Type the name of the Tumblr you want to get the posts from (not the full url) 
+            </h2>
+            <br>
+            <label for="tumblrName">Tumblr name:</label>
+            <input type="text" name="tumblrName" id="tumblrName" value=""  />
+            <br>
+            <button id="submit" type="button">Get Posts</button>
 
+		    <div id="posts" data-role="content">
+			   <!-- Content from tumblr goes here -->
 		    </div>
 
 		    <div data-role="footer">
-			    ...
+			    Copywrong 2013
 		    </div>
 	    </div>
 
