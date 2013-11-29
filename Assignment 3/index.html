@@ -43,7 +43,6 @@
                         success: function (data) {
                             if (data.meta.status != 404){
                                 $("#posts").empty();
-                                $width = $('#posts').width();
                                 for (i = 0; i < 20; i++) {
                                     if (data.response.posts[i].type == 'text'){
                                         $('#posts').append('<div id = "' + i + '" class = "post">');
@@ -55,10 +54,7 @@
                                         $('#' + i).append('<p> Caption: ' + data.response.posts[i].caption + '</p>');
                                         $('#' + i).append('<p> Post URL: ' + data.response.posts[i].post_url + '</p>');
                                         $('#' + i).append('<p> Date: ' + data.response.posts[i].date + '</p>');
-                                        $('#' + i).append('<div id = "photo' + i + '"><img align="center" src="' + data.response.posts[i].photos[0].alt_sizes[0].url + '"></img>');
-                                        $('#photo'+i).css({
-                                            'max-width' : $width , 'height' : 'auto'
-                                        });
+                                        $('#' + i).append('<img align="center" src="' + data.response.posts[i].photos[0].alt_sizes[0].url + '"></img>');
                                     } else if (data.response.posts[i].type == 'answer') {
                                         $('#posts').append('<div id = "' + i + '" class = "post">');
                                         $('#' + i).append('<p> Question: ' + data.response.posts[i].question + '</p>');
@@ -111,7 +107,7 @@
             <button id="submit" type="button">Get Posts</button>
 
 		    <div id="posts" data-role="content">
-			   <!-- Content from tumblr goes here -->
+
 		    </div>
 
 		    <div data-role="footer">
