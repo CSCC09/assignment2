@@ -38,6 +38,7 @@
                         success: function (data) {
                             if (data.meta.status != 404){
                                 $("#posts").empty();
+                                $width = $('#posts').width();
                                 for (i = 0; i < 20; i++) {
                                     if (data.response.posts[i].type == 'text'){
                                         $('#posts').append('<div id = "' + i + '" class = "post">');
@@ -49,7 +50,10 @@
                                         $('#' + i).append('<p> Caption: ' + data.response.posts[i].caption + '</p>');
                                         $('#' + i).append('<p> Post URL: ' + data.response.posts[i].post_url + '</p>');
                                         $('#' + i).append('<p> Date: ' + data.response.posts[i].date + '</p>');
-                                        $('#' + i).append('<img align="center" src="' + data.response.posts[i].photos[0].alt_sizes[0].url + '">');
+                                        $('#' + i).append('<div id = "photo' + i + '"><img align="center" src="' + data.response.posts[i].photos[0].alt_sizes[0].url + '"></img>');
+                                        $('#photo'+i).css({
+                                            'max-width' : $width , 'height' : 'auto'
+                                        });
                                     } else if (data.response.posts[i].type == 'answer') {
                                         $('#posts').append('<div id = "' + i + '" class = "post">');
                                         $('#' + i).append('<p> Question: ' + data.response.posts[i].question + '</p>');
